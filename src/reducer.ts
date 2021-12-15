@@ -6,6 +6,7 @@ type State = {
   playerTurn: Player;
   /** This is also used to infer if the game is over. null = draw, undefined = game isn't over */
   whoWon: Player | null | undefined;
+  winningSet: number[][] | undefined;
 };
 
 type Action = {type: 'selectBox'; col: number; row: number} | {type: 'reset'};
@@ -14,6 +15,7 @@ export const initialState: State = {
   boardState: new Array(3).fill(new Array(3).fill(null)),
   playerTurn: 'X',
   whoWon: undefined,
+  winningSet: undefined,
 };
 
 export function reducer(state: State, action: Action): State {
@@ -32,10 +34,12 @@ export function reducer(state: State, action: Action): State {
 
       // mark selected box for current player
       newBoardState[col][row] = state.playerTurn;
+      const {whoWon, winningSet} = getWhoWon(newBoardState);
       return {
         boardState: newBoardState,
         playerTurn: state.playerTurn === 'X' ? 'O' : 'X', // toggle player turn
-        whoWon: getWhoWon(newBoardState), // check if someone won
+        whoWon,
+        winningSet,
       };
     case 'reset':
       return initialState;

@@ -5,7 +5,10 @@ import {initialState, reducer} from '../reducer';
 import {getPlayerTurnText} from '../utils';
 
 const TicTacToe = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{boardState, playerTurn, whoWon, winningSet}, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
 
   const onBoxPress = (col: number, row: number) => {
     dispatch({type: 'selectBox', col, row});
@@ -13,17 +16,18 @@ const TicTacToe = () => {
 
   const onReset = () => dispatch({type: 'reset'});
 
-  const isGameOver = state.whoWon !== undefined;
+  const isGameOver = whoWon !== undefined;
 
   return (
     <View style={styles.container}>
       <Board
-        values={state.boardState}
+        values={boardState}
         onBoxPress={onBoxPress}
         disabled={isGameOver}
+        highlightedCoordinates={winningSet}
       />
       <Text style={styles.playerTurnText}>
-        {getPlayerTurnText(state.playerTurn, state.whoWon)}
+        {getPlayerTurnText(playerTurn, whoWon)}
       </Text>
       <TouchableOpacity style={styles.resetButton} onPress={onReset}>
         <Text style={styles.resetText}>New game</Text>

@@ -1,61 +1,64 @@
 import {BoardState, BoxValue, Player} from './types';
 
+// array of winning coordinate sets
+const WINNING_SETS = [
+  // horizontal winners
+  [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ],
+  [
+    [1, 0],
+    [1, 1],
+    [1, 2],
+  ],
+  [
+    [2, 0],
+    [2, 1],
+    [2, 2],
+  ],
+  // vertical winners
+  [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+  ],
+  [
+    [0, 1],
+    [1, 1],
+    [2, 1],
+  ],
+  [
+    [0, 2],
+    [1, 2],
+    [2, 2],
+  ],
+  // diagnol winners
+  [
+    [0, 0],
+    [1, 1],
+    [2, 2],
+  ],
+  [
+    [0, 2],
+    [1, 1],
+    [2, 0],
+  ],
+];
+
 /**
  *
  * @param boardState
  * @returns undefined if the game is not over, null if the game is a draw, otherwise the player who won
  */
-export const getWhoWon = (boardState: BoardState): BoxValue | undefined => {
-  // array of winning coordinate sets
-  const winningSets = [
-    // horizontal winners
-    [
-      [0, 0],
-      [0, 1],
-      [0, 2],
-    ],
-    [
-      [1, 0],
-      [1, 1],
-      [1, 2],
-    ],
-    [
-      [2, 0],
-      [2, 1],
-      [2, 2],
-    ],
-    // vertical winners
-    [
-      [0, 0],
-      [1, 0],
-      [2, 0],
-    ],
-    [
-      [0, 1],
-      [1, 1],
-      [2, 1],
-    ],
-    [
-      [0, 2],
-      [1, 2],
-      [2, 2],
-    ],
-    // diagnol winners
-    [
-      [0, 0],
-      [1, 1],
-      [2, 2],
-    ],
-    [
-      [0, 2],
-      [1, 1],
-      [2, 0],
-    ],
-  ];
-
-  for (let i = 0; i < winningSets.length; i++) {
-    // current set of winning coordinates
-    const [coords1, coords2, coords3] = winningSets[i];
+export const getWhoWon = (
+  boardState: BoardState,
+): {whoWon: BoxValue | undefined; winningSet: number[][] | undefined} => {
+  for (let i = 0; i < WINNING_SETS.length; i++) {
+    // current set of winning coordinates to check
+    const winningSet = WINNING_SETS[i];
+    const [coords1, coords2, coords3] = winningSet;
 
     // use the first value from the set as the current potential winner
     const boxValue = boardState[coords1[0]][coords1[1]];
@@ -67,7 +70,7 @@ export const getWhoWon = (boardState: BoardState): BoxValue | undefined => {
         boardState[coords2[0]][coords2[1]] &&
       boardState[coords2[0]][coords2[1]] === boardState[coords3[0]][coords3[1]]
     ) {
-      return boxValue;
+      return {whoWon: boxValue, winningSet};
     }
   }
 
@@ -76,15 +79,17 @@ export const getWhoWon = (boardState: BoardState): BoxValue | undefined => {
     for (let j = 0; j < 3; j++) {
       // empty box on the board so game is not over
       if (boardState[i][j] === null) {
-        return;
+        return {whoWon: undefined, winningSet: undefined};
       }
 
       // we have a draw
       if (i === 2 && j === 2) {
-        return null;
+        return {whoWon: null, winningSet: undefined};
       }
     }
   }
+
+  return {whoWon: undefined, winningSet: undefined};
 };
 
 export const getPlayerTurnText = (

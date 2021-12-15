@@ -13,7 +13,7 @@ const App = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#84DCC6',
+    backgroundColor: '#84DCC6', // color palette: #D6EDFF, #ACD7EC, #8B95C9
   },
 });
 

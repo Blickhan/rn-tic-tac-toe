@@ -6,11 +6,15 @@ type BoxProps = {
   value: BoxValue;
   onPress: () => void;
   disabled?: boolean;
+  highlighted?: boolean;
 };
 
-const Box: FC<BoxProps> = ({value, onPress, disabled}) => {
+const Box: FC<BoxProps> = ({value, onPress, disabled, highlighted}) => {
   return (
-    <TouchableOpacity style={styles.box} onPress={onPress} disabled={disabled}>
+    <TouchableOpacity
+      style={[styles.box, highlighted ? styles.highlighted : undefined]}
+      onPress={onPress}
+      disabled={disabled}>
       <Text style={styles.text}>{value}</Text>
     </TouchableOpacity>
   );
@@ -25,8 +29,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  highlighted: {
+    backgroundColor: '#fdf363',
+  },
   text: {
-    fontSize: 28,
+    fontSize: 34,
     fontWeight: '500',
   },
 });
