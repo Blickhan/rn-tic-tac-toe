@@ -1,5 +1,4 @@
-import {BoardState, Player} from './types';
-import {getWhoWon} from './utils';
+import {getWhoWon, BoardState, Player} from './utils';
 
 type State = {
   boardState: BoardState;

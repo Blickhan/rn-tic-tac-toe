@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {BoxValue} from '../types';
+import {BoxValue} from '../utils';
 
 type BoxProps = {
   value: BoxValue;

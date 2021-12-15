@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {BoardState} from '../types';
+import {BoardState} from '../utils';
 import Box from './Box';
 
 type BoardProps = {

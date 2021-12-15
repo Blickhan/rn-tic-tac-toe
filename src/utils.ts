@@ -1,4 +1,8 @@
-import {BoardState, Player} from './types';
+export type Player = 'X' | 'O';
+
+export type BoxValue = Player | null;
+
+export type BoardState = BoxValue[][];
 
 // array of winning coordinate sets
 const WINNING_SETS = [

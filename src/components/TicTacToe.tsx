@@ -1,8 +1,16 @@
 import React, {useReducer} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Board from './Board';
 import {initialState, reducer} from '../reducer';
 import {getPlayerTurnText} from '../utils';
+
+const catImage = require('../assets/cat.png');
 
 const TicTacToe = () => {
   const [{boardState, playerTurn, whoWon, winningSet}, dispatch] = useReducer(
@@ -17,15 +25,21 @@ const TicTacToe = () => {
   const onReset = () => dispatch({type: 'reset'});
 
   const isGameOver = whoWon !== undefined;
+  const isDraw = whoWon === null;
 
   return (
     <View style={styles.container}>
-      <Board
-        values={boardState}
-        onBoxPress={onBoxPress}
-        disabled={isGameOver}
-        highlightedCoordinates={winningSet}
-      />
+      <ImageBackground
+        key={new Date().valueOf()}
+        style={styles.imageBackground}
+        source={isDraw ? catImage : undefined}>
+        <Board
+          values={boardState}
+          onBoxPress={onBoxPress}
+          disabled={isGameOver}
+          highlightedCoordinates={winningSet}
+        />
+      </ImageBackground>
       <Text style={styles.playerTurnText}>
         {getPlayerTurnText(playerTurn, whoWon)}
       </Text>
@@ -40,8 +54,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    justifyContent: 'center',
     alignItems: 'center',
+  },
+  imageBackground: {
+    paddingTop: 160,
   },
   playerTurnText: {
     fontSize: 28,
