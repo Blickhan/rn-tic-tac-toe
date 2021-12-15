@@ -9,6 +9,14 @@ import App from '../src/App';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+describe('App tests', () => {
+  it('renders correctly', () => {
+    renderer.create(<App />);
+  });
+
+  describe('utils', () => {
+    it.todo('should test getWhoWon');
+
+    it.todo('should test getPlayerTurnText');
+  });
 });
