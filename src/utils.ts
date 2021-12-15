@@ -110,3 +110,9 @@ export const getPlayerTurnText = (
 
   return `It's ${playerTurn}'s turn`;
 };
+
+export const getRandomBackgroundColor = () => {
+  const backgroundColors = ['#84DCC6', '#D6EDFF', '#ACD7EC', '#8B95C9'];
+  const randomIndex = Math.floor(Math.random() * backgroundColors.length);
+  return backgroundColors[randomIndex];
+};

@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     shadowColor: '#ccc',
     shadowOpacity: 0.7,
     shadowRadius: 3,
-    shadowOffset: {width: 3, height: 3},
+    shadowOffset: {width: 0, height: 3},
+    elevation: 3,
     marginTop: 64,
   },
   resetText: {

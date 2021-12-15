@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import TicTacToe from './components/TicTacToe';
+import {getRandomBackgroundColor} from './utils';
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#84DCC6', // color palette: #D6EDFF, #ACD7EC, #8B95C9
+    backgroundColor: getRandomBackgroundColor(),
   },
 });
 
