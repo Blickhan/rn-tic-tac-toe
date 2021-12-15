@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   playerTurnText: {
     fontSize: 28,
-    marginVertical: 16,
+    marginTop: 16,
   },
   resetButton: {
     padding: 8,
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.7,
     shadowRadius: 3,
     shadowOffset: {width: 3, height: 3},
+    marginTop: 64,
   },
   resetText: {
     fontSize: 16,

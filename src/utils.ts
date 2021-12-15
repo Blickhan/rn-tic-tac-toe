@@ -1,4 +1,4 @@
-import {BoardState, BoxValue, Player} from './types';
+import {BoardState, Player} from './types';
 
 // array of winning coordinate sets
 const WINNING_SETS = [
@@ -54,7 +54,7 @@ const WINNING_SETS = [
  */
 export const getWhoWon = (
   boardState: BoardState,
-): {whoWon: BoxValue | undefined; winningSet: number[][] | undefined} => {
+): {whoWon: Player | null | undefined; winningSet: number[][] | undefined} => {
   for (let i = 0; i < WINNING_SETS.length; i++) {
     // current set of winning coordinates to check
     const winningSet = WINNING_SETS[i];
