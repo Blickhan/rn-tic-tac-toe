@@ -112,7 +112,7 @@ export const getPlayerTurnText = (
 };
 
 export const getRandomBackgroundColor = () => {
-  const backgroundColors = ['#84DCC6', '#D6EDFF', '#ACD7EC', '#8B95C9'];
+  const backgroundColors = ['#84DCC6', '#ACD7EC', '#8B95C9', '#f881ae'];
   const randomIndex = Math.floor(Math.random() * backgroundColors.length);
   return backgroundColors[randomIndex];
 };

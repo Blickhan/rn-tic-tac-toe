@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {FC, useReducer} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -12,7 +12,11 @@ import {getPlayerTurnText} from '../utils';
 
 const catImage = require('../assets/cat.png');
 
-const TicTacToe = () => {
+type TicTacToeProps = {
+  onReset?: () => void;
+};
+
+const TicTacToe: FC<TicTacToeProps> = ({onReset}) => {
   const [{boardState, playerTurn, whoWon, winningSet}, dispatch] = useReducer(
     reducer,
     initialState,
@@ -22,7 +26,10 @@ const TicTacToe = () => {
     dispatch({type: 'selectBox', col, row});
   };
 
-  const onReset = () => dispatch({type: 'reset'});
+  const onResetPress = () => {
+    dispatch({type: 'reset'});
+    onReset?.();
+  };
 
   const isGameOver = whoWon !== undefined;
   const isDraw = whoWon === null;
@@ -43,7 +50,7 @@ const TicTacToe = () => {
       <Text style={styles.playerTurnText}>
         {getPlayerTurnText(playerTurn, whoWon)}
       </Text>
-      <TouchableOpacity style={styles.resetButton} onPress={onReset}>
+      <TouchableOpacity style={styles.resetButton} onPress={onResetPress}>
         <Text style={styles.resetText}>New game</Text>
       </TouchableOpacity>
     </View>
