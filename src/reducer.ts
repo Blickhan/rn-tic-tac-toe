@@ -1,6 +1,6 @@
 import {getWhoWon, BoardState, Player} from './utils';
 
-type State = {
+export type State = {
   boardState: BoardState;
   playerTurn: Player;
   /** This is also used to infer if the game is over. null = draw, undefined = game isn't over */
@@ -8,7 +8,9 @@ type State = {
   winningSet: number[][] | undefined;
 };
 
-type Action = {type: 'selectBox'; col: number; row: number} | {type: 'reset'};
+export type Action =
+  | {type: 'selectBox'; row: number; col: number}
+  | {type: 'reset'};
 
 export const initialState: State = {
   boardState: new Array(3).fill(new Array(3).fill(null)),
@@ -20,9 +22,9 @@ export const initialState: State = {
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'selectBox':
-      const {col, row} = action;
+      const {row, col} = action;
       // box has already been selected or game is over
-      if (state.boardState[col][row] !== null || state.whoWon !== undefined) {
+      if (state.boardState[row][col] !== null || state.whoWon !== undefined) {
         return state;
       }
 
@@ -32,7 +34,7 @@ export function reducer(state: State, action: Action): State {
       });
 
       // mark selected box for current player
-      newBoardState[col][row] = state.playerTurn;
+      newBoardState[row][col] = state.playerTurn;
       const {whoWon, winningSet} = getWhoWon(newBoardState);
       return {
         boardState: newBoardState,

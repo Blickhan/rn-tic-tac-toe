@@ -22,8 +22,8 @@ const TicTacToe: FC<TicTacToeProps> = ({onReset}) => {
     initialState,
   );
 
-  const onBoxPress = (col: number, row: number) => {
-    dispatch({type: 'selectBox', col, row});
+  const onBoxPress = (row: number, col: number) => {
+    dispatch({type: 'selectBox', row, col});
   };
 
   const onResetPress = () => {

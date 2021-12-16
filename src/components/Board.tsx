@@ -5,7 +5,7 @@ import Box from './Box';
 
 type BoardProps = {
   values: BoardState;
-  onBoxPress: (col: number, row: number) => void;
+  onBoxPress: (row: number, col: number) => void;
   disabled?: boolean;
   highlightedCoordinates?: number[][];
 };

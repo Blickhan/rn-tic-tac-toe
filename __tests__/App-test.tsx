@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 import 'react-native';
 import React from 'react';
 import App from '../src/App';
@@ -12,11 +8,5 @@ import renderer from 'react-test-renderer';
 describe('App tests', () => {
   it('renders correctly', () => {
     renderer.create(<App />);
-  });
-
-  describe('utils', () => {
-    it.todo('should test getWhoWon');
-
-    it.todo('should test getPlayerTurnText');
   });
 });
