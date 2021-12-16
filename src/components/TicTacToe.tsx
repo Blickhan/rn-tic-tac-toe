@@ -10,7 +10,7 @@ import Board from './Board';
 import {initialState, reducer} from '../reducer';
 import {getPlayerTurnText} from '../utils';
 
-const catImage = require('../assets/cat.png');
+const catImage = require('../assets/images/cat.png');
 
 type TicTacToeProps = {
   onReset?: () => void;

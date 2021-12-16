@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 34,
-    fontWeight: '500',
+    fontFamily: 'FFFTusj-Bold',
+    padding: 2, // fixes font being clipped
   },
 });
 
